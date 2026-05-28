@@ -1,0 +1,325 @@
+I am building an INDUSTRY-LEVEL AI SECURITY + PRIVACY PLATFORM completely OFFLINE with NO paid APIs and NO cloud dependency.
+
+The project name is:
+
+AI Secure Intelligence Vault
+
+The system must work FULLY LOCALLY using:
+- React + Tailwind frontend
+- FastAPI backend
+- LangChain
+- ChromaDB vector database
+- Ollama local LLM
+- AES-256 encryption
+- OCR processing
+- RAG pipeline
+- Semantic AI search
+- IndexedDB/local encrypted storage
+
+IMPORTANT:
+The project MUST be:
+- fully offline
+- privacy-focused
+- cybersecurity-oriented
+- enterprise-level
+- modular
+- scalable
+- production-ready
+- responsive
+- modern UI
+- advanced architecture
+- no online API dependency
+
+====================================================
+FRONTEND TECH STACK
+====================================================
+
+Frontend:
+- React
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Router DOM
+- CryptoJS
+- Lucide React
+- IndexedDB
+- localforage
+
+Frontend already partially exists with some UI screens and routing.
+
+The frontend design style should be:
+- dark cybersecurity theme
+- glassmorphism
+- neon UI
+- modern dashboard
+- professional animations
+- enterprise security platform look
+
+====================================================
+BACKEND TECH STACK
+====================================================
+
+Backend:
+- FastAPI
+- LangChain
+- ChromaDB
+- Sentence Transformers
+- PyPDF
+- Pillow
+- pytesseract
+- cryptography
+- python-multipart
+- Ollama local models
+- phi3 or mistral
+
+====================================================
+PROJECT GOAL
+====================================================
+
+The platform should allow users to:
+
+1. Upload:
+- PDFs
+- Images
+- scanned images
+- DOCX
+- TXT files
+
+2. Extract text using:
+- OCR
+- document parsers
+
+3. Chunk documents using:
+- LangChain chunking
+
+4. Generate embeddings using:
+- Sentence Transformers
+
+5. Store embeddings in:
+- ChromaDB vector database
+
+6. Encrypt sensitive data using:
+- AES-256
+- PBKDF2
+
+7. Provide:
+- semantic search
+- RAG AI chat
+- secure document vault
+- encrypted local AI search
+
+====================================================
+IMPORTANT REQUIREMENTS
+====================================================
+
+The system must:
+- work fully offline
+- use local Ollama models
+- never require OpenAI API
+- never require cloud APIs
+- use modular architecture
+- use scalable enterprise code structure
+- use clean code principles
+- use reusable components
+- use proper comments
+- use professional naming conventions
+- use production-ready architecture
+
+====================================================
+FOLDER STRUCTURE
+====================================================
+
+FRONTEND STRUCTURE:
+
+secure-privacy-web/
+│
+├── public/
+│
+├── src/
+│
+│   ├── app/
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── routes.jsx
+│   │
+│   ├── assets/
+│   │
+│   ├── components/
+│   │   ├── ui/
+│   │   ├── encryption/
+│   │   ├── contacts/
+│   │   ├── qr/
+│   │   └── security/
+│   │
+│   ├── config/
+│   │
+│   ├── constants/
+│   │
+│   ├── context/
+│   │
+│   ├── crypto/
+│   │
+│   ├── database/
+│   │
+│   ├── features/
+│   │   ├── auth/
+│   │   ├── encryption/
+│   │   ├── contacts/
+│   │   ├── qr-exchange/
+│   │   ├── clipboard-monitor/
+│   │   └── settings/
+│   │
+│   ├── hooks/
+│   │
+│   ├── layouts/
+│   │
+│   ├── pages/
+│   │
+│   ├── services/
+│   │
+│   ├── styles/
+│   │
+│   ├── utils/
+│   │
+│   └── workers/
+│
+└── package.json
+
+
+====================================================
+BACKEND STRUCTURE
+====================================================
+
+backend/
+│
+├── api/
+│   ├── routes/
+│   ├── controllers/
+│   └── middleware/
+│
+├── ai/
+│   ├── langchain/
+│   ├── embeddings/
+│   ├── rag/
+│   ├── chunking/
+│   ├── vector_db/
+│   └── prompts/
+│
+├── encryption/
+│
+├── storage/
+│
+├── uploads/
+│
+├── ocr/
+│
+├── models/
+│
+├── utils/
+│
+└── main.py
+
+====================================================
+CODING REQUIREMENTS
+====================================================
+
+IMPORTANT:
+When generating code:
+
+1. Generate COMPLETE FULL FILE CODE
+2. Mention exact file path before every code block
+3. Never generate partial code
+4. Use enterprise-level architecture
+5. Use advanced concepts
+6. Include proper imports
+7. Include comments
+8. Ensure code is production-ready
+9. Ensure code is modular
+10. Ensure code is scalable
+11. Ensure all files integrate correctly
+12. Ensure frontend and backend connect properly
+13. Use modern React practices
+14. Use async/await properly
+15. Use proper FastAPI architecture
+16. Use secure cryptography practices
+17. Use proper error handling
+18. Use clean folder separation
+19. Use reusable services
+20. Use professional UI design
+
+====================================================
+AI FEATURES REQUIRED
+====================================================
+
+Implement:
+- OCR scanned image extraction
+- PDF parsing
+- LangChain RecursiveCharacterTextSplitter
+- SentenceTransformer embeddings
+- ChromaDB vector storage
+- RAG pipeline
+- semantic similarity search
+- encrypted vector storage
+- AI summarization
+- AI document chat
+- local Ollama integration
+- secure upload handling
+- AES encryption engine
+- PBKDF2 key derivation
+- secure key management
+
+====================================================
+FRONTEND FEATURES REQUIRED
+====================================================
+
+Implement:
+- cybersecurity dashboard
+- encrypted upload UI
+- drag-and-drop uploads
+- AI search UI
+- encrypted vault UI
+- secure chat interface
+- file preview
+- OCR preview
+- vector search interface
+- responsive layout
+- neon animations
+- glassmorphism cards
+- secure settings panel
+- dark theme system
+
+====================================================
+IMPORTANT OUTPUT FORMAT
+====================================================
+
+Generate code PHASE BY PHASE.
+
+Start from:
+1. Backend setup
+2. FastAPI server
+3. Upload APIs
+4. OCR engine
+5. LangChain chunking
+6. Embedding generation
+7. ChromaDB integration
+8. Ollama integration
+9. RAG pipeline
+10. Frontend integration
+
+For every phase:
+- explain architecture
+- generate complete file code
+- mention file paths
+- explain how files connect
+- explain how to run
+
+Never skip implementation details.
+
+Never give simplified beginner code.
+
+Always generate enterprise-level production-ready code.
+
+
+
+
+

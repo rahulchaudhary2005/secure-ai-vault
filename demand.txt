@@ -1,0 +1,15 @@
+The user is asking me to:
+
+Check the prompt and the code written in backend and frontend to see if they satisfy the requirements exactly
+Identify what's missing
+Integrate missing things
+Make sure the project is complete and working
+Specifically ensure:
+Uploaded files during encryption work properly and generate exact files (not just content) during decryption
+Images and PDFs should be exactly the same after encryption/decryption
+Implement JWT authentication during encryption/decryption
+Two-factor secure sharing: User A encrypts data and provides their email + User B's email
+OTP is sent to both users
+User A gets OTP and encrypts
+User B gets OTP and can decrypt (only User B can decrypt using their email/contact)
+Make it industry-grade secure

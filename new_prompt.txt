@@ -1,0 +1,223 @@
+I am building an ENTERPRISE AI CYBERSECURITY + PRIVACY SAAS PLATFORM at FAANG/Senior Infrastructure Engineer level.
+
+I will upload the COMPLETE ZIP FILE of my project.
+
+Your task is to:
+
+* deeply analyze the ENTIRE codebase
+* understand the full architecture
+* understand frontend + backend integration
+* understand folder structure
+* understand authentication flow
+* understand AI architecture
+* understand Redis/Celery architecture
+* understand vector DB integration
+* understand OCR pipeline
+* understand RAG architecture
+* understand JWT/OTP authentication
+* understand encryption systems
+* understand React frontend architecture
+* understand FastAPI backend architecture
+
+Then:
+
+* fix all bugs
+* fix all architecture issues
+* fix all frontend/backend integration problems
+* improve scalability
+* improve security
+* improve AI infrastructure
+* improve SaaS architecture
+* improve enterprise readiness
+* improve deployment readiness
+* improve production readiness
+
+IMPORTANT:
+Do NOT give generic beginner-level answers.
+Treat this project like a REAL ENTERPRISE PRODUCT being built for:
+
+* Microsoft
+* Google
+* OpenAI
+* Meta
+* Amazon
+* Cybersecurity companies
+* Enterprise SaaS startups
+
+I want:
+
+* 10/10 architecture quality
+* production-level code
+* enterprise-grade scalability
+* senior engineer level systems
+* clean modular architecture
+* reusable scalable components
+* FAANG-level engineering patterns
+
+PROJECT VISION:
+
+I want to build a PRIVACY-FIRST SECURE COMMUNICATION + AI VAULT PLATFORM.
+
+MAIN GOAL:
+Current social media and messaging systems are NOT truly private because platform providers can access metadata, messages, and conversation data.
+
+I want to build a system where:
+
+* user data remains encrypted
+* messages remain encrypted
+* uploaded files remain encrypted
+* AI memory remains encrypted
+* semantic vectors remain encrypted
+* only authorized users can decrypt data
+* nobody between the communication can access plaintext
+* even platform owners should not access user conversations
+* secure communication should happen between two or more people without data leakage
+
+The idea is:
+A user can encrypt:
+
+* messages
+* files
+* documents
+* images
+* AI conversations
+* chat history
+
+and only the authorized recipient can decrypt the content using:
+
+* OTP
+* email verification
+* mobile number verification
+* secure access keys
+* JWT authentication
+* encryption keys
+
+This system should later become:
+
+* plugin architecture for WhatsApp-like apps
+* plugin architecture for Instagram-like chats
+* secure enterprise communication layer
+* encrypted AI vault
+* AI-powered secure workspace
+* zero-trust privacy platform
+
+CORE OBJECTIVE:
+NO DATA LEAKAGE BETWEEN CONVERSATIONS.
+
+Even if data is intercepted:
+
+* it must remain encrypted
+* unreadable
+* unusable without proper decryption authorization
+
+TECH STACK CURRENTLY USED:
+
+FRONTEND:
+
+* React
+* Vite
+* TailwindCSS
+* Framer Motion
+* Axios
+* React Context
+* React Router
+* Glassmorphism UI
+* Cybersecurity dashboard UI
+
+BACKEND:
+
+* FastAPI
+* SQLAlchemy
+* JWT Authentication
+* OTP verification
+* Gmail SMTP
+* bcrypt
+* AES-GCM encryption
+* PBKDF2 key derivation
+* enterprise encryption engine
+
+AI STACK:
+
+* RAG pipeline
+* ChromaDB
+* semantic search
+* embeddings generation
+* OCR extraction
+* local AI infrastructure
+* Ollama
+* AI memory systems
+* conversation memory
+* vector intelligence
+
+INFRASTRUCTURE:
+
+* Redis
+* Celery distributed workers
+* Flower monitoring
+* Docker
+* enterprise task queues
+
+CURRENT FEATURES IMPLEMENTED:
+
+* AES encryption/decryption
+* enterprise encryption engine
+* secure vault system
+* AI vector storage
+* encrypted metadata
+* OCR document extraction
+* semantic search
+* RAG AI assistant
+* JWT authentication
+* OTP verification
+* protected APIs
+* AI memory
+* Redis/Celery infrastructure
+* enterprise frontend dashboard
+* AI upload processing
+* secure document storage
+
+WHAT I WANT YOU TO DO AFTER ANALYZING ZIP:
+
+1. Understand FULL project architecture.
+2. Explain missing integrations.
+3. Fix all broken flows.
+4. Connect frontend ↔ backend completely.
+5. Improve production-level architecture.
+6. Improve AI infrastructure.
+7. Improve frontend engineering.
+8. Improve backend engineering.
+9. Improve scalability.
+10. Improve enterprise security.
+11. Improve SaaS product quality.
+12. Improve database architecture.
+13. Improve vector DB architecture.
+14. Improve AI memory architecture.
+15. Improve distributed systems architecture.
+16. Improve deployment readiness.
+17. Improve Docker/Kubernetes readiness.
+18. Improve observability.
+19. Improve performance.
+20. Improve security against leaks.
+
+I want:
+
+* exact file-by-file fixes
+* exact updated code
+* exact folder improvements
+* exact architecture improvements
+* exact integration steps
+* exact production-ready upgrades
+
+Do NOT simplify the project.
+
+Treat this as:
+ENTERPRISE AI PRIVACY INFRASTRUCTURE PLATFORM.
+
+After analyzing the ZIP:
+
+* explain architecture
+* explain problems
+* explain missing integrations
+* provide exact fixes
+* provide upgraded code
+* continue evolving the system into a REAL ENTERPRISE PRODUCT.

@@ -1,0 +1,82 @@
+Your uploaded architecture and requirements define a fully offline enterprise AI security platform with React, FastAPI, LangChain, ChromaDB, Ollama, OCR, AES-256, and RAG pipelines.
+
+At this stage, the correct approach is NOT to dump thousands of lines of random code into every empty file at once.
+
+Because your project now includes:
+
+OCR pipelines
+file encryption
+video/image/PDF encryption
+LangChain chunking
+vector DB
+RAG
+local LLM orchestration
+secure upload systems
+AI semantic search
+encrypted vault architecture
+
+this must be built in production phases or the codebase will become unstable and unmaintainable.
+
+The correct enterprise build order is:
+
+PHASE 1 — Core Backend Foundation
+FastAPI server
+environment config
+centralized security config
+logging system
+upload system
+storage manager
+secure path validation
+file-type validation
+PHASE 2 — Encryption Engine
+AES-256-GCM
+PBKDF2
+key derivation
+secure IV generation
+encryption for:
+text
+images
+videos
+PDFs
+DOCX
+PPTX
+ZIP
+audio
+encrypted metadata
+PHASE 3 — OCR + Document Processing
+scanned PDFs
+image OCR
+DOCX parsing
+PPT parsing
+PDF extraction
+multilingual OCR
+PHASE 4 — AI Processing Pipeline
+LangChain chunking
+embedding generation
+ChromaDB vector storage
+semantic retrieval
+local RAG pipeline
+PHASE 5 — Ollama Integration
+phi3/mistral integration
+AI summarization
+secure AI chat
+semantic encrypted search
+PHASE 6 — Frontend AI Dashboard
+upload UI
+encrypted vault UI
+AI search UI
+OCR preview
+semantic chat UI
+drag-drop upload system
+
+That is the professional architecture path.
+
+If you try to generate “everything” in one message:
+
+files will break
+imports will mismatch
+backend dependencies will conflict
+vector DB setup will fail
+OCR paths will fail
+LangChain chains will mismatch
+encryption services will become inconsistent

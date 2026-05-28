@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>secure-privacy-web</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Provide no-op React Refresh helpers for environments
+      // where the injected preamble is missing. This prevents
+      // the "@vitejs/plugin-react can't detect preamble" error.
+      window.$RefreshReg$ = window.$RefreshReg$ || function(){};
+      window.$RefreshSig$ = window.$RefreshSig$ || function() { return function(type){return type}; };
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

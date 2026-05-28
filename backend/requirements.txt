@@ -1,0 +1,102 @@
+# =========================
+# FASTAPI BACKEND
+# =========================
+fastapi>=0.104.1
+uvicorn>=0.24.0
+python-multipart>=0.0.6
+aiofiles>=23.2.1
+python-dotenv>=1.0.0
+
+# =========================
+# DATA VALIDATION
+# =========================
+pydantic>=2.5.0
+
+# =========================
+# SECURITY & ENCRYPTION
+# =========================
+cryptography>=41.0.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# =========================
+# OCR & IMAGE PROCESSING
+# =========================
+Pillow>=10.0.0
+pytesseract>=0.3.10
+
+# =========================
+# DOCUMENT PARSERS
+# =========================
+pypdf>=4.0.1
+python-docx>=1.0.1
+python-pptx>=0.6.21
+
+# =========================
+# AUDIO / VIDEO PROCESSING
+# =========================
+mutagen>=1.46.0
+moviepy>=1.0.3
+
+# =========================
+# LANGCHAIN AI PIPELINE
+# =========================
+langchain>=0.1.0
+langchain-community>=0.0.20
+langchain-core>=0.1.0
+langchain-text-splitters>=0.0.1
+
+# =========================
+# EMBEDDINGS & VECTOR DB
+# =========================
+sentence-transformers>=2.2.0
+chromadb>=0.4.0
+
+# =========================
+# MACHINE LEARNING / AI
+# =========================
+transformers>=4.36.0
+torch>=2.1.0
+numpy>=1.26.0
+scikit-learn>=1.3.0
+
+# =========================
+# DATABASE & STORAGE
+# =========================
+sqlalchemy>=2.0.0
+
+# =========================
+# HTTP / API
+# =========================
+httpx>=0.25.0
+requests>=2.31.0
+
+# =========================
+# FILE HANDLING
+# =========================
+python-magic>=0.4.27
+
+# =========================
+# LOGGING & UTILITIES
+# =========================
+loguru>=0.7.2
+tqdm>=4.66.1
+
+# =========================
+# OLLAMA LOCAL LLM
+# =========================
+ollama>=0.1.7
+
+# =========================
+# EMAIL & OTP
+# =========================
+fastapi-mail>=1.4.1
+python-multipart>=0.0.6
+
+# =========================
+# DEPENDENCIES (FIXED VERSIONS)
+# =========================
+starlette>=0.50.0
+pydantic>=2.11.10
+pydantic-core>=2.33.2
+cryptography>=46.0.3
