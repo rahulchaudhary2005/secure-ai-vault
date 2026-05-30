@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
-from database.database import SessionLocal
-from database.models import OTPSession
+from backend.database.database import SessionLocal
+from backend.database.models import OTPSession
 import uuid
 
 

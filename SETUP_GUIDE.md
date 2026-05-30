@@ -26,7 +26,7 @@ cd d:\Projects 2026\secure_privecy_web
 #### 1.2 Create Virtual Environment
 ```bash
 python -m venv venv
-venv\Scripts\activate
+.\venv\Scripts\activate
 ```
 
 #### 1.3 Install Dependencies
@@ -89,6 +89,8 @@ CORS_ORIGINS=http://localhost:5173,http://localhost:3000
 cd backend
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
+
+python -m uvicorn main:app --host 127.0.0.1 --port 8001 --reload --ws none
 
 Expected output:
 ```

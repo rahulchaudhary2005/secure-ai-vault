@@ -1,4 +1,4 @@
-from ai.memory.conversation_memory import (
+from backend.ai.memory.conversation_memory import (
     ConversationMemoryEngine
 )
 

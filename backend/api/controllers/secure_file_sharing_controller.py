@@ -5,6 +5,7 @@ Manages encryption, OTP verification, and decryption with JWT authentication
 
 import os
 import uuid
+import base64
 from pathlib import Path
 from datetime import datetime, timedelta
 from typing import Optional
@@ -12,15 +13,15 @@ from typing import Optional
 from fastapi import HTTPException, UploadFile
 from pydantic import BaseModel
 
-from database.file_share_repository import FileShareRepository
-from database.otp_session_repository import OTPSessionRepository
-from database.user_repository import UserRepository
+from backend.database.file_share_repository import FileShareRepository
+from backend.database.otp_session_repository import OTPSessionRepository
+from backend.database.user_repository import UserRepository
 
 from encryption.enhanced_file_encryption import EnhancedFileEncryption
-from auth.jwt_handler import JWTHandler
-from auth.email_sender import EmailSender
-from auth.otp_manager import OTPManager
-from auth.email_validator import EmailValidator
+from backend.auth.jwt_handler import JWTHandler
+from backend.auth.email_sender import EmailSender
+from backend.auth.otp_manager import OTPManager
+from backend.auth.email_validator import EmailValidator
 
 from storage.storage_manager import StorageManager
 from utils.constants import UPLOAD_DIR
@@ -116,14 +117,23 @@ class SecureFileSharingController:
             # VERIFY USERS EXIST
             # =========================
 
+            # Require sender to be a registered user, but allow recipients
+            # that are not yet registered (so files can be shared to any
+            # real email address).
             sender = UserRepository.get_by_email(sender_email)
-            recipient = UserRepository.get_by_email(recipient_email)
 
-            if not sender or not recipient:
+            if not sender:
                 raise HTTPException(
                     status_code=401,
-                    detail="One or both users not found"
+                    detail="Sender not found"
                 )
+
+            # Recipient may be an external email address; attempt to load
+            # user record if it exists but do not require it.
+            try:
+                recipient = UserRepository.get_by_email(recipient_email)
+            except Exception:
+                recipient = None
 
             # =========================
             # GENERATE OTP FOR SENDER
@@ -760,11 +770,13 @@ class SecureFileSharingController:
 
             FileShareRepository.mark_accessed(share_id)
 
+            encoded_file_data = base64.b64encode(file_data).decode('utf-8')
+
             return {
                 "success": True,
                 "message": "File decrypted successfully",
                 "share_id": share_id,
-                "file_data": file_data,
+                "file_data": encoded_file_data,
                 "metadata": metadata,
                 "file_info": {
                     "filename": metadata["filename"],

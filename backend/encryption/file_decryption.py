@@ -1,7 +1,6 @@
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-from encryption.key_manager import (
-    KeyManager
+from backend.encryption.    KeyManager
 )
 
 

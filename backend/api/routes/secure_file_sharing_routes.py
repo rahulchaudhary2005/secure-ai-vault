@@ -14,7 +14,7 @@ from fastapi import (
 
 from typing import Optional
 
-from api.controllers.secure_file_sharing_controller import (
+from backend.api.controllers.secure_file_sharing_controller import (
     SecureFileSharingController,
     InitEncryptionRequest,
     VerifyEncryptionOTPRequest,
@@ -24,7 +24,7 @@ from api.controllers.secure_file_sharing_controller import (
     DecryptFileRequest
 )
 
-from auth.jwt_handler import JWTHandler
+from backend.auth.jwt_handler import JWTHandler
 
 
 # =========================
@@ -257,7 +257,7 @@ async def get_sent_shares(
     """
 
     try:
-        from database.file_share_repository import (
+        from backend.database.file_share_repository import (
             FileShareRepository
         )
 
@@ -312,7 +312,7 @@ async def get_received_shares(
     """
 
     try:
-        from database.file_share_repository import (
+        from backend.database.file_share_repository import (
             FileShareRepository
         )
 
@@ -358,17 +358,15 @@ async def get_received_shares(
 
 @router.get("/share/{share_id}/info")
 async def get_share_info(
-    share_id: str,
-    email: str = Depends(get_email_from_token),
-    token: str = Depends(get_authorization_token)
+    share_id: str
 ):
     """
     Get detailed information about a file share
-    User must be sender or recipient
+    Share lookup is allowed by secret share ID only.
     """
 
     try:
-        from database.file_share_repository import (
+        from backend.database.file_share_repository import (
             FileShareRepository
         )
 

@@ -1,9 +1,7 @@
-from encryption.file_encryption import (
-    FileEncryption
+from backend.encryption.    FileEncryption
 )
 
-from encryption.file_decryption import (
-    FileDecryption
+from backend.encryption.    FileDecryption
 )
 
 

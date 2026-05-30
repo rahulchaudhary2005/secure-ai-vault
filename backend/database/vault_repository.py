@@ -1,8 +1,8 @@
-from database.database import (
+from backend.database.database import (
     SessionLocal
 )
 
-from database.models import (
+from backend.database.models import (
     VaultDocument
 )
 

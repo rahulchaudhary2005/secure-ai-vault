@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Mail, Lock, Eye, EyeOff, Check, X, AlertCircle } from 'lucide-react';
+import { Download, Mail, Lock, Eye, EyeOff, Check, X, AlertCircle, File } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { useAuth } from '../../context/AuthContext';
 
 /**
  * Secure File Decryption Component
@@ -40,6 +39,7 @@ const SecureFileDecryption = () => {
     // Success
     const [decryptedFile, setDecryptedFile] = useState(null);
     const [fileMetadata, setFileMetadata] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
 
     // =========================
     // UTILITY FUNCTIONS
@@ -51,16 +51,50 @@ const SecureFileDecryption = () => {
     };
 
     const downloadFile = (data, filename, mimeType) => {
-        const blob = new Blob([data], { type: mimeType });
+        let fileData = data;
+
+        if (typeof data === 'string') {
+            const binaryString = atob(data);
+            const bytes = new Uint8Array(binaryString.length);
+            for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            fileData = bytes;
+        }
+
+        const blob = new Blob([fileData], { type: mimeType });
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = filename;
+        link.download = filename || 'downloaded-file';
         document.body.appendChild(link);
         link.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(link);
     };
+
+    const getFileBlob = (data, mimeType) => {
+        let fileData = data;
+
+        if (typeof data === 'string') {
+            const binaryString = atob(data);
+            const bytes = new Uint8Array(binaryString.length);
+            for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            fileData = bytes;
+        }
+
+        return new Blob([fileData], { type: mimeType });
+    };
+
+    useEffect(() => {
+        return () => {
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+            }
+        };
+    }, [previewUrl]);
 
     // =========================
     // API CALLS
@@ -225,20 +259,14 @@ const SecureFileDecryption = () => {
                 throw new Error(data.message || 'Decryption failed');
             }
 
-            // Convert base64 to bytes if needed
-            let fileData = data.file_data;
-
-            if (typeof fileData === 'string') {
-                const binaryString = atob(fileData);
-                const bytes = new Uint8Array(binaryString.length);
-                for (let i = 0; i < binaryString.length; i++) {
-                    bytes[i] = binaryString.charCodeAt(i);
-                }
-                fileData = bytes;
-            }
-
-            setDecryptedFile(fileData);
+            setDecryptedFile(data.file_data);
             setFileMetadata(data.metadata);
+
+            if (data.metadata?.mime_type) {
+                const previewBlob = getFileBlob(data.file_data, data.metadata.mime_type);
+                const url = URL.createObjectURL(previewBlob);
+                setPreviewUrl(url);
+            }
 
             toast.success('File decrypted successfully!');
 
@@ -526,6 +554,48 @@ const SecureFileDecryption = () => {
                 Your decrypted file is ready to download
             </p>
 
+            {previewUrl && fileMetadata?.mime_type?.startsWith('image/') && (
+                <div className="bg-gray-900/80 rounded-2xl p-4 mb-6 border border-cyan-500/20">
+                    <h3 className="text-sm font-semibold text-cyan-300 mb-3">
+                        Preview
+                    </h3>
+                    <img
+                        src={previewUrl}
+                        alt="Decrypted preview"
+                        className="w-full rounded-xl border border-cyan-500/20 shadow-xl"
+                    />
+                </div>
+            )}
+
+            {previewUrl && fileMetadata?.mime_type === 'application/pdf' && (
+                <div className="bg-gray-900/80 rounded-2xl p-4 mb-6 border border-cyan-500/20">
+                    <h3 className="text-sm font-semibold text-cyan-300 mb-3">
+                        PDF Preview
+                    </h3>
+                    <iframe
+                        src={previewUrl}
+                        title="PDF Preview"
+                        className="w-full h-96 rounded-xl border border-cyan-500/20 shadow-xl"
+                    />
+                </div>
+            )}
+
+            {previewUrl && !fileMetadata?.mime_type?.startsWith('image/') && fileMetadata?.mime_type !== 'application/pdf' && (
+                <div className="bg-gray-900/80 rounded-2xl p-6 mb-6 border border-cyan-500/20 flex items-center gap-4">
+                    <div className="p-3 rounded-full bg-cyan-500/10 text-cyan-300">
+                        <File className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <h3 className="text-sm font-semibold text-cyan-300 mb-1">
+                            Preview unavailable for this file type
+                        </h3>
+                        <p className="text-sm text-gray-400">
+                            {fileMetadata?.mime_type} is supported only for direct download.
+                        </p>
+                    </div>
+                </div>
+            )}
+
             <div className="bg-gray-800/30 rounded-xl p-6 mb-8 text-left">
                 <h3 className="text-sm font-semibold text-gray-300 mb-4">
                     File Information
@@ -567,9 +637,10 @@ const SecureFileDecryption = () => {
                         fileMetadata?.mime_type
                     );
                 }}
-                className="w-full bg-gradient-to-r from-green-600 to-emerald-600 
-                  hover:from-green-500 hover:to-emerald-500 text-white 
-                  font-semibold py-3 rounded-lg transition mb-4 
+                disabled={!decryptedFile || !fileMetadata}
+                className="w-full bg-gradient-to-r from-green-600 to-emerald-600 \
+                  hover:from-green-500 hover:to-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed \
+                  text-white font-semibold py-3 rounded-lg transition mb-4 \
                   flex items-center justify-center gap-2"
             >
                 <Download className="w-5 h-5" />

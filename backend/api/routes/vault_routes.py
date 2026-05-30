@@ -1,11 +1,11 @@
 from fastapi import APIRouter
 from fastapi import Depends
 
-from auth.auth_guard import (
+from backend.auth.auth_guard import (
     AuthGuard
 )
 
-from database.vault_repository import (
+from backend.database.vault_repository import (
     VaultRepository
 )
 

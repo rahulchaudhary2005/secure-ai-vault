@@ -20,6 +20,11 @@ const sections = [
                 path: '/encrypt',
             },
             {
+                title: 'Shares',
+                icon: <Search size={20} />,
+                path: '/shares',
+            },
+            {
                 title: 'Upload File',
                 icon: <Upload size={20} />,
                 path: '/upload-vault',
@@ -84,10 +89,9 @@ function Sidebar() {
                                 key={menu.title}
                                 to={menu.path}
                                 className={({ isActive }) =>
-                                    `flex items-center gap-3 p-4 rounded-2xl transition-all duration-300 text-sm font-medium ${
-                                        isActive
-                                            ? 'bg-primary text-black shadow-neon'
-                                            : 'text-gray-200 hover:bg-white/10'
+                                    `flex items-center gap-3 p-4 rounded-2xl transition-all duration-300 text-sm font-medium ${isActive
+                                        ? 'bg-primary text-black shadow-neon'
+                                        : 'text-gray-200 hover:bg-white/10'
                                     }`
                                 }
                             >

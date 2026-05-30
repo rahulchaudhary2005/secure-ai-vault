@@ -4,7 +4,7 @@ from fastapi import File
 
 from typing import List
 
-from api.controllers.upload_controller import (
+from backend.api.controllers.upload_controller import (
     UploadController
 )
 

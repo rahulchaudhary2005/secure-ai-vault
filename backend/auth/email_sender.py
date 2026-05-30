@@ -1,7 +1,7 @@
 from fastapi_mail import FastMail
 from fastapi_mail import MessageSchema
 
-from auth.email_config import conf
+from backend.auth.email_config import conf
 
 
 class EmailSender:

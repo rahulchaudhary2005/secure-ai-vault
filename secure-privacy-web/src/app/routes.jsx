@@ -6,6 +6,7 @@ import Settings from '../pages/Settings'
 import NotFound from '../pages/NotFound'
 import AIChat from '../features/encryption/pages/AIChat'
 import UploadVault from '../features/encryption/pages/UploadVault'
+import Shares from '../features/shares/Shares'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import ProtectedRoute from '../components/auth/ProtectedRoute'
@@ -58,6 +59,14 @@ function AppRoutes() {
                 element={
                     <ProtectedRoute>
                         <UploadVault />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path='/shares'
+                element={
+                    <ProtectedRoute>
+                        <Shares />
                     </ProtectedRoute>
                 }
             />

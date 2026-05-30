@@ -1,8 +1,7 @@
 from fastapi import WebSocket
 from fastapi import WebSocketDisconnect
 
-from ai.rag.rag_engine import (
-    RAGEngine
+from backend.ai.    RAGEngine
 )
 
 

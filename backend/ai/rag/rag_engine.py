@@ -1,4 +1,4 @@
-from ai.embeddings.embedding_service import (
+from backend.ai.embeddings.embedding_service import (
     EmbeddingService
 )
 

@@ -13,6 +13,12 @@ function Register() {
     })
     const [loading, setLoading] = useState(false)
 
+    const validateEmail = (email) => {
+        const trimmed = email.trim().toLowerCase()
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return regex.test(trimmed)
+    }
+
     useEffect(() => {
         if (token) {
             navigate('/')
@@ -29,11 +35,21 @@ function Register() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+
+        if (!validateEmail(form.email)) {
+            toast.error('Invalid email format. Please enter a real email like user@example.com.')
+            return
+        }
+
         setLoading(true)
 
         try {
-            const response = await registerUser(form)
-            
+            const normalizedForm = {
+                ...form,
+                email: form.email.trim().toLowerCase()
+            }
+            const response = await registerUser(normalizedForm)
+
             if (response.success) {
                 login(response.access_token, response.user || { email: form.email })
                 toast.success('Account created successfully!')
@@ -43,7 +59,8 @@ function Register() {
             }
         } catch (error) {
             console.error('Registration failed', error)
-            const message = error.response?.data?.detail || 'Registration failed. Please use a valid email and password.'
+            const message = error.response?.data?.detail
+                || (error.request ? 'Unable to reach backend. Start the server and try again.' : error.message)
             toast.error(message)
         } finally {
             setLoading(false)

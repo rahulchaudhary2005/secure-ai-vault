@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
-from database.database import SessionLocal
-from database.models import FileShare
+from backend.database.database import SessionLocal
+from backend.database.models import FileShare
 
 
 class FileShareRepository:
@@ -51,7 +51,7 @@ class FileShareRepository:
                 encryption_key=encryption_key,
                 status="pending",
                 expires_at=expires_at,
-                metadata={
+                metadata_json={
                     "created_by_user": sender_email,
                     "shared_with": recipient_email
                 }
@@ -231,10 +231,10 @@ class FileShareRepository:
             if not file_share:
                 return False
 
-            if file_share.metadata is None:
-                file_share.metadata = {}
+            if file_share.metadata_json is None:
+                file_share.metadata_json = {}
 
-            file_share.metadata.update(metadata_dict)
+            file_share.metadata_json.update(metadata_dict)
             
             db.commit()
             return True

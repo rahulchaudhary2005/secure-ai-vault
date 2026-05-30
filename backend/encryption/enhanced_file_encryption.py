@@ -5,14 +5,12 @@ Ensures exact file reconstruction after decryption
 
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2
 
 import os
 import json
 import hashlib
 from typing import Tuple
-from encryption.key_manager import KeyManager
-
+from backend.encryption.
 
 class EnhancedFileEncryption:
     """

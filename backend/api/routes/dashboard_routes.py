@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-from database.database import SessionLocal
-from database.models import VaultDocument
-from database.models import ConversationMemory
+from backend.database.database import SessionLocal
+from backend.database.models import VaultDocument
+from backend.database.models import ConversationMemory
 
 router = APIRouter()
 

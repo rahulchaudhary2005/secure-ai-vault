@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database.database import engine
-from database.models import Base
+from backend.database.database import engine
+from backend.database.models import Base
 
 
 # from websockets.ai_chat_socket import (
@@ -11,53 +11,53 @@ from database.models import Base
 from fastapi import WebSocket
 
 
-from api.routes.chat_routes import (
+from backend.api.routes.chat_routes import (
     router as chat_router
 )
 
-from api.routes.search_routes import (
+from backend.api.routes.search_routes import (
     router as search_router
 )
 
-from api.routes.assistant_routes import (
+from backend.api.routes.assistant_routes import (
     router as assistant_router
 )
 
 
-from api.routes.security_routes import (
+from backend.api.routes.security_routes import (
     router as security_router
 )
 
-from api.routes.decrypt_routes import (
+from backend.api.routes.decrypt_routes import (
     router as decrypt_router
 )
 
 
-from api.routes.auth_routes import (
+from backend.api.routes.auth_routes import (
     router as auth_router
 )
-from api.routes.verify_routes import (
+from backend.api.routes.verify_routes import (
     router as verify_router
 )
 
-from api.routes.login_routes import (
+from backend.api.routes.login_routes import (
     router as login_router
 )
 
-from api.routes.protected_routes import (
+from backend.api.routes.protected_routes import (
     router as protected_router
 )
-from api.routes.vault_routes import (
+from backend.api.routes.vault_routes import (
     router as vault_router
 )
 
-from api.routes.dashboard_routes import (
+from backend.api.routes.dashboard_routes import (
     router as dashboard_router
 )
 
-from api.routes.upload_routes import router as upload_router
+from backend.api.routes.upload_routes import router as upload_router
 
-from api.routes.secure_file_sharing_routes import (
+from backend.api.routes.secure_file_sharing_routes import (
     router as secure_sharing_router
 )
 

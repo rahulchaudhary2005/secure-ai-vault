@@ -8,7 +8,7 @@ from sqlalchemy import JSON
 
 from datetime import datetime
 
-from database.database import Base
+from backend.database.database import Base
 
 
 class User(Base):
@@ -216,7 +216,11 @@ class FileShare(Base):
         nullable=False
     )
 
-    metadata = Column(
+    # 'metadata' is a reserved attribute name on the Declarative base
+    # use a different attribute name while keeping the DB column name
+    # as 'metadata' so existing DB layout and API keys remain unchanged.
+    metadata_json = Column(
+        'metadata',
         JSON,
         nullable=True
     )

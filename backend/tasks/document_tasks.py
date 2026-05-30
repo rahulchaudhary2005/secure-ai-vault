@@ -1,23 +1,18 @@
 from celery_app import celery
 
-from storage.storage_manager import (
-    StorageManager
+from backend.storage.    StorageManager
 )
 
-from encryption.file_decryption import (
-    FileDecryption
+from backend.encryption.    FileDecryption
 )
 
-from ai.ocr.ocr_engine import (
-    OCREngine
+from backend.ai.    OCREngine
 )
 
-from ai.chunking.text_chunker import (
-    TextChunker
+from backend.ai.    TextChunker
 )
 
-from ai.embeddings.embedding_service import (
-    EmbeddingService
+from backend.ai.    EmbeddingService
 )
 
 from vector_database.chroma_manager import (

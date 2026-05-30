@@ -13,6 +13,12 @@ function Login() {
     })
     const [loading, setLoading] = useState(false)
 
+    const validateEmail = (email) => {
+        const trimmed = email.trim().toLowerCase()
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return regex.test(trimmed)
+    }
+
     useEffect(() => {
         if (token) {
             navigate('/')
@@ -29,11 +35,21 @@ function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+
+        if (!validateEmail(form.email)) {
+            toast.error('Invalid email format. Please enter a valid email like user@example.com.')
+            return
+        }
+
         setLoading(true)
 
         try {
-            const response = await loginUser(form)
-            
+            const normalizedForm = {
+                ...form,
+                email: form.email.trim().toLowerCase()
+            }
+            const response = await loginUser(normalizedForm)
+
             if (response.success) {
                 login(response.access_token, response.user || { email: form.email })
                 toast.success('Welcome back!')
@@ -43,7 +59,8 @@ function Login() {
             }
         } catch (error) {
             console.error('Login failed', error)
-            const message = error.response?.data?.detail || 'Login failed. Check your credentials.'
+            const message = error.response?.data?.detail
+                || (error.request ? 'Unable to reach backend. Start the server and try again.' : error.message)
             toast.error(message)
         } finally {
             setLoading(false)
