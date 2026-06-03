@@ -2,7 +2,8 @@ import hashlib
 import os
 from pathlib import Path
 
-from backend.utils.
+from .constants import ALLOWED_EXTENSIONS
+
 def validate_file_extension(filename: str):
     extension = Path(filename).suffix.lower()
 

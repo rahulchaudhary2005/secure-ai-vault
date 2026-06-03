@@ -2,6 +2,8 @@
 Secure File Sharing Routes
 API endpoints for encrypted file sharing with JWT and OTP authentication
 """
+import os
+import base64
 
 from fastapi import (
     APIRouter,
@@ -14,7 +16,7 @@ from fastapi import (
 
 from typing import Optional
 
-from backend.api.controllers.secure_file_sharing_controller import (
+from api.controllers.secure_file_sharing_controller import (
     SecureFileSharingController,
     InitEncryptionRequest,
     VerifyEncryptionOTPRequest,
@@ -23,8 +25,11 @@ from backend.api.controllers.secure_file_sharing_controller import (
     VerifyDecryptionOTPRequest,
     DecryptFileRequest
 )
+from pydantic import BaseModel
+from auth.jwt_handler import JWTHandler
 
-from backend.auth.jwt_handler import JWTHandler
+from fastapi.responses import StreamingResponse
+from io import BytesIO
 
 
 # =========================
@@ -257,7 +262,7 @@ async def get_sent_shares(
     """
 
     try:
-        from backend.database.file_share_repository import (
+        from database.file_share_repository import (
             FileShareRepository
         )
 
@@ -312,7 +317,7 @@ async def get_received_shares(
     """
 
     try:
-        from backend.database.file_share_repository import (
+        from database.file_share_repository import (
             FileShareRepository
         )
 
@@ -366,7 +371,7 @@ async def get_share_info(
     """
 
     try:
-        from backend.database.file_share_repository import (
+        from database.file_share_repository import (
             FileShareRepository
         )
 
@@ -378,15 +383,6 @@ async def get_share_info(
             raise HTTPException(
                 status_code=404,
                 detail="Share not found"
-            )
-
-        if (
-            email != file_share.sender_email
-            and email != file_share.recipient_email
-        ):
-            raise HTTPException(
-                status_code=401,
-                detail="Not authorized"
             )
 
         return {
@@ -432,4 +428,142 @@ async def get_share_info(
         raise HTTPException(
             status_code=500,
             detail=f"Failed to retrieve share info: {str(e)}"
+        )
+# =========================
+# DOWNLOAD ORIGINAL FILE
+# =========================
+
+@router.get("/download/original/{share_id}")
+async def download_original_file(
+    share_id: str,
+    email: str = Depends(get_email_from_token)
+):
+
+    try:
+
+        from database.file_share_repository import (
+            FileShareRepository
+        )
+
+        file_share = (
+            FileShareRepository.get_by_share_id(
+                share_id
+            )
+        )
+
+        if not file_share:
+            raise HTTPException(
+                status_code=404,
+                detail="File not found"
+            )
+
+        # =========================
+        # VERIFY OWNER
+        # =========================
+
+        if file_share.sender_email != email:
+
+            raise HTTPException(
+                status_code=401,
+                detail="Unauthorized"
+            )
+
+        file_path = (
+            file_share.encrypted_file_path
+        )
+
+        if not os.path.exists(file_path):
+
+            raise HTTPException(
+                status_code=404,
+                detail="Encrypted file missing"
+            )
+
+        file_data = open(
+            file_path,
+            "rb"
+        ).read()
+
+        return StreamingResponse(
+
+            BytesIO(file_data),
+
+            media_type="application/octet-stream",
+
+            headers={
+                "Content-Disposition":
+                f'attachment; filename="encrypted_{file_share.original_filename}"'
+            }
+        )
+
+    except Exception as e:
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+
+# =========================
+# DOWNLOAD DECRYPTED FILE
+# =========================
+
+@router.post("/download/decrypted/{share_id}")
+async def download_decrypted_file(
+
+    share_id: str,
+
+    request: DecryptFileRequest,
+
+    recipient_email: str = Header(...),
+
+    token: str = Depends(get_authorization_token)
+):
+
+    try:
+
+        result = await (
+            SecureFileSharingController
+            .decrypt_and_download_file(
+
+                share_id=share_id,
+
+                password=request.password,
+
+                recipient_email=recipient_email,
+
+                access_token=token
+            )
+        )
+
+        if not result["success"]:
+
+            raise HTTPException(
+                status_code=400,
+                detail="Decryption failed"
+            )
+
+        file_bytes = base64.b64decode(
+            result["file_data"]
+        )
+
+        metadata = result["metadata"]
+
+        return StreamingResponse(
+
+            BytesIO(file_bytes),
+
+            media_type=metadata["mime_type"],
+
+            headers={
+                "Content-Disposition":
+                f'attachment; filename="{metadata["filename"]}"'
+            }
+        )
+
+    except Exception as e:
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
         )

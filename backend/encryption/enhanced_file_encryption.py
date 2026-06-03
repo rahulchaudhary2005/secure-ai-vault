@@ -10,7 +10,7 @@ import os
 import json
 import hashlib
 from typing import Tuple
-from backend.encryption.
+from encryption.key_manager import KeyManager
 
 class EnhancedFileEncryption:
     """

@@ -6,10 +6,10 @@ from fastapi import Header
 
 from pydantic import BaseModel
 
-from backend.auth.jwt_handler import JWTHandler
-from backend.auth.password_manager import PasswordManager
-from backend.auth.email_validator import EmailValidator
-from backend.database.user_repository import UserRepository
+from auth.jwt_handler import JWTHandler
+from auth.password_manager import PasswordManager
+from auth.email_validator import EmailValidator
+from database.user_repository import UserRepository
 
 router = APIRouter(
     prefix="/api/auth",

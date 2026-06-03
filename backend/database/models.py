@@ -8,7 +8,7 @@ from sqlalchemy import JSON
 
 from datetime import datetime
 
-from backend.database.database import Base
+from database.database import Base
 
 
 class User(Base):

@@ -1,4 +1,4 @@
-from backend.ai.ocr.ocr_engine import OCREngine
+from ai.ocr.ocr_engine import OCREngine
 
 class ImageParser:
 

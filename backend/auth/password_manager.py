@@ -4,8 +4,10 @@ import hashlib
 
 
 pwd_context = CryptContext(
-
-    schemes=["bcrypt"],
+    # Use PBKDF2-SHA256 to avoid bcrypt backend issues and
+    # the 72-byte input limit. PBKDF2 is widely supported
+    # and requires no optional native dependencies.
+    schemes=["pbkdf2_sha256"],
 
     deprecated="auto"
 )

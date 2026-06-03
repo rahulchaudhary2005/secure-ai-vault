@@ -4,7 +4,8 @@ from cryptography.hazmat.primitives.ciphers.aead import (
 
 import os
 
-from backend.encryption.    KeyManager
+from encryption.key_manager import (
+    KeyManager
 )
 
 

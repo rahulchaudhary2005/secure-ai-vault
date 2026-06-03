@@ -3,10 +3,10 @@ from fastapi import HTTPException
 
 from pydantic import BaseModel
 
-from backend.auth.password_manager import PasswordManager
-from backend.auth.email_validator import EmailValidator
-from backend.auth.jwt_handler import JWTHandler
-from backend.database.user_repository import UserRepository
+from auth.password_manager import PasswordManager
+from auth.email_validator import EmailValidator
+from auth.jwt_handler import JWTHandler
+from database.user_repository import UserRepository
 
 router = APIRouter(
     prefix="/api/auth",

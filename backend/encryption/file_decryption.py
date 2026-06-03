@@ -1,6 +1,9 @@
-from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.hazmat.primitives.ciphers.aead import (
+    AESGCM
+)
 
-from backend.encryption.    KeyManager
+from encryption.key_manager import (
+    KeyManager
 )
 
 
@@ -8,23 +11,40 @@ class FileDecryption:
 
     @staticmethod
     def decrypt_file(
+
         encrypted_data: bytes,
+
         password: str,
+
         salt: bytes,
+
         nonce: bytes
     ):
 
+        # =========================
+        # DERIVE SAME KEY
+        # =========================
+
         key = KeyManager.derive_key(
+
             password,
+
             salt
         )[:32]
 
+        # =========================
+        # AES GCM DECRYPTION
+        # =========================
+
         aesgcm = AESGCM(key)
 
-        decrypted_data = aesgcm.decrypt(
+        decrypted = aesgcm.decrypt(
+
             nonce,
+
             encrypted_data,
+
             None
         )
 
-        return decrypted_data
+        return decrypted

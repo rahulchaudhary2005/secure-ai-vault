@@ -13,15 +13,15 @@ from typing import Optional
 from fastapi import HTTPException, UploadFile
 from pydantic import BaseModel
 
-from backend.database.file_share_repository import FileShareRepository
-from backend.database.otp_session_repository import OTPSessionRepository
-from backend.database.user_repository import UserRepository
+from database.file_share_repository import FileShareRepository
+from database.otp_session_repository import OTPSessionRepository
+from database.user_repository import UserRepository
 
 from encryption.enhanced_file_encryption import EnhancedFileEncryption
-from backend.auth.jwt_handler import JWTHandler
-from backend.auth.email_sender import EmailSender
-from backend.auth.otp_manager import OTPManager
-from backend.auth.email_validator import EmailValidator
+from auth.jwt_handler import JWTHandler
+from auth.email_sender import EmailSender
+from auth.otp_manager import OTPManager
+from auth.email_validator import EmailValidator
 
 from storage.storage_manager import StorageManager
 from utils.constants import UPLOAD_DIR

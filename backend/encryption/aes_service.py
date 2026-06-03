@@ -1,6 +1,6 @@
 from cryptography.fernet import Fernet
 
-from backend.encryption.
+from encryption.
 class AESService:
 
     @staticmethod

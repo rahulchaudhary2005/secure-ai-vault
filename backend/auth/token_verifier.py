@@ -3,7 +3,7 @@ from jose import JWTError
 
 from fastapi import HTTPException
 
-from backend.auth.jwt_handler import (
+from auth.jwt_handler import (
     SECRET_KEY,
     ALGORITHM
 )

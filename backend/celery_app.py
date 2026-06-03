@@ -1,4 +1,39 @@
+# from celery import Celery
+
+# celery = Celery(
+
+#     "secure_ai_vault",
+
+#     broker="redis://localhost:6379/0",
+
+#     backend="redis://localhost:6379/0"
+# )
+
+# celery.conf.update(
+
+#     task_serializer="json",
+
+#     accept_content=["json"],
+
+#     result_serializer="json",
+
+#     timezone="UTC",
+
+#     enable_utc=True,
+
+#     task_track_started=True,
+
+#     task_time_limit=1800,
+
+#     task_acks_late=True,
+
+#     worker_prefetch_multiplier=1,
+
+#     broker_connection_retry_on_startup=True
+# )
+
 from celery import Celery
+
 
 celery = Celery(
 
@@ -6,8 +41,17 @@ celery = Celery(
 
     broker="redis://localhost:6379/0",
 
-    backend="redis://localhost:6379/0"
+    backend="redis://localhost:6379/0",
+
+    include=[
+        "tasks.document_tasks"
+    ]
 )
+
+
+# =====================================
+# CELERY CONFIG
+# =====================================
 
 celery.conf.update(
 
@@ -17,17 +61,7 @@ celery.conf.update(
 
     result_serializer="json",
 
-    timezone="UTC",
+    timezone="Asia/Kolkata",
 
-    enable_utc=True,
-
-    task_track_started=True,
-
-    task_time_limit=1800,
-
-    task_acks_late=True,
-
-    worker_prefetch_multiplier=1,
-
-    broker_connection_retry_on_startup=True
+    enable_utc=True
 )

@@ -1,7 +1,3 @@
-from sentence_transformers import (
-    SentenceTransformer
-)
-
 class EmbeddingService:
 
     model = None
@@ -11,9 +7,19 @@ class EmbeddingService:
 
         if EmbeddingService.model is None:
 
+            from sentence_transformers import (
+                SentenceTransformer
+            )
+
+            # ===================================
+            # FAST EMBEDDING MODEL
+            # ===================================
+
             EmbeddingService.model = (
+
                 SentenceTransformer(
-                    "all-MiniLM-L6-v2"
+                    "all-MiniLM-L6-v2",
+                    device="cpu"
                 )
             )
 
@@ -23,13 +29,13 @@ class EmbeddingService:
         EmbeddingService.load_model()
 
         embeddings = (
+
             EmbeddingService
             .model
-            .encode(text)
+            .encode(
+                text,
+                normalize_embeddings=True
+            )
         )
 
         return embeddings.tolist()
-    
-    
-    
-    #.\venv\Scripts\activate

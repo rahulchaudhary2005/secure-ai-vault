@@ -17,7 +17,7 @@ from utils.helpers import (
     generate_secure_filename
 )
 
-from backend.database.vault_repository import (
+from database.vault_repository import (
     VaultRepository
 )
 

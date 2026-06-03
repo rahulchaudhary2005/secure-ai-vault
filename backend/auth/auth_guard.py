@@ -3,7 +3,7 @@ from fastapi.security import HTTPBearer
 from fastapi.security import HTTPAuthorizationCredentials
 from fastapi import Depends
 
-from backend.auth.token_verifier import (
+from auth.token_verifier import (
     TokenVerifier
 )
 

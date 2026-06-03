@@ -5,8 +5,8 @@ Run this script before starting the backend
 """
 
 from sqlalchemy import create_engine, inspect
-from backend.database.database import DATABASE_URL
-from backend.database.models import Base
+from database.database import DATABASE_URL
+from database.models import Base
 
 
 def init_database():
