@@ -39,3 +39,5 @@ celery==5.4.0
 redis==5.0.7
 
 pytesseract==0.3.13
+
+fastapi-mail==1.4.1
