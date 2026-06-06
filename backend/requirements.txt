@@ -37,3 +37,5 @@ websockets==15.0.1
 
 celery==5.4.0
 redis==5.0.7
+
+pytesseract==0.3.13
