@@ -7,7 +7,8 @@ from ai.vector_db.chroma_engine import (
 )
 
 from ai.langchain.ollama_engine import (
-    OllamaEngine
+    OllamaEngine,
+    get_auto_model
 )
 
 from ai.memory.context_builder import (
@@ -23,6 +24,10 @@ from ai.router.query_router import (
 )
 from database.user_repository import (
     UserRepository
+)
+from ai.langchain.ollama_engine import (
+    OllamaEngine,
+    get_auto_model
 )
 
 class RAGEngine:
@@ -387,7 +392,11 @@ class RAGEngine:
                     "ai_model",
                     "gemma:2b"
                 )
+                
             )
+            if model_name == "auto":
+
+             model_name = get_auto_model()
 
             temperature = float(
                 user_settings.get(
