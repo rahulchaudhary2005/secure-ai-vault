@@ -61,6 +61,10 @@ from api.routes.secure_file_sharing_routes import (
     router as secure_sharing_router
 )
 
+from api.routes.settings_routes import (
+    router as settings_router
+)
+
 # ============================================
 # DATABASE INIT
 # ============================================
@@ -121,6 +125,8 @@ app.include_router(vault_router)
 app.include_router(dashboard_router)
 
 app.include_router(secure_sharing_router)
+
+app.include_router( settings_router)
 
 # ============================================
 # ROOT

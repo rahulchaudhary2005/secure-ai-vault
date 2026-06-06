@@ -37,12 +37,64 @@ class User(Base):
         default=False
     )
 
+    # =====================
+    # SETTINGS FIELDS
+    # =====================
+
+    full_name = Column(
+        String,
+        default=""
+    )
+
+    role = Column(
+        String,
+        default=""
+    )
+
+    ai_model = Column(
+        String,
+        default="gemma:2b"
+    )
+
+    response_style = Column(
+        String,
+        default="professional"
+    )
+
+    ai_temperature = Column(
+        String,
+        default="0.3"
+    )
+
+    auto_lock_minutes = Column(
+        Integer,
+        default=15
+    )
+
     created_at = Column(
         DateTime,
         default=datetime.utcnow
     )
+    
+    context_window = Column(
+    Integer,
+    default=2048
+    )
 
+    max_response_length = Column(
+       Integer,
+       default=1000
+   )
 
+    streaming_enabled = Column(
+        Boolean,
+        default=True
+    )
+
+    reasoning_enabled = Column(
+        Boolean,
+        default=False
+    )   
 # =========================
 # ENTERPRISE VAULT MODEL
 # =========================

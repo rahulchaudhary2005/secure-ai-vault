@@ -21,7 +21,9 @@ from ai.memory.conversation_memory import (
 from ai.router.query_router import (
     QueryRouter
 )
-
+from database.user_repository import (
+    UserRepository
+)
 
 class RAGEngine:
 
@@ -347,6 +349,85 @@ class RAGEngine:
             memory_context = (
                 memory_context[:300]
             )
+            
+            
+            
+
+                       # =====================================
+            # LOAD USER AI SETTINGS
+            # =====================================
+
+            user_settings = (
+
+                UserRepository
+                .get_ai_settings(
+                    owner_email
+                )
+            )
+
+            if not user_settings:
+
+                user_settings = {
+
+                    "ai_model": "gemma:2b",
+
+                    "ai_temperature": 0.3,
+
+                    "context_window": 2048,
+
+                    "max_response_length": 1000,
+
+                    "streaming_enabled": True,
+
+                    "reasoning_enabled": False
+                }
+
+            model_name = (
+                user_settings.get(
+                    "ai_model",
+                    "gemma:2b"
+                )
+            )
+
+            temperature = float(
+                user_settings.get(
+                    "ai_temperature",
+                    0.3
+                )
+            )
+
+            context_window = int(
+                user_settings.get(
+                    "context_window",
+                    2048
+                )
+            )
+
+            max_response_length = int(
+                user_settings.get(
+                    "max_response_length",
+                    1000
+                )
+            )
+
+            reasoning_enabled = bool(
+                user_settings.get(
+                    "reasoning_enabled",
+                    False
+                )
+            )
+
+            # =====================================
+            # COMBINE MEMORY + DOCUMENT CONTEXT
+            # =====================================
+
+            combined_context = f"""
+Previous Conversation:
+{memory_context}
+
+Document Context:
+{retrieved_context}
+"""
 
             # =====================================
             # GENERATE AI RESPONSE
@@ -361,9 +442,32 @@ class RAGEngine:
                         question,
 
                     retrieved_context=
-                        retrieved_context
+                        combined_context,
+
+                    model_name=
+                        model_name,
+
+                    temperature=
+                        temperature,
+
+                    context_window=
+                        context_window,
+
+                    max_response_length=
+                        max_response_length,
+
+                    reasoning_enabled=
+                        reasoning_enabled
                 )
             )
+            
+            
+            
+            
+
+
+
+
 
             # =====================================
             # FALLBACK RESPONSE

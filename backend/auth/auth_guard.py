@@ -21,6 +21,10 @@ class AuthGuard:
 
         try:
 
+            print("\n========== AUTH DEBUG ==========")
+            print("Credentials:", credentials)
+            print("Token:", credentials.credentials[:50] if credentials else None)
+
             token = credentials.credentials
 
             email = (
@@ -28,11 +32,18 @@ class AuthGuard:
                 .verify_token(token)
             )
 
+            print("Authenticated Email:", email)
+            print("================================\n")
+
             return email
 
-        except Exception:
+        except Exception as e:
+
+            print("\n========== AUTH ERROR ==========")
+            print(str(e))
+            print("================================\n")
 
             raise HTTPException(
                 status_code=401,
-                detail="Unauthorized"
+                detail=str(e)
             )
