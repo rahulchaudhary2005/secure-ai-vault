@@ -89,7 +89,11 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "http://127.0.0.1:5173"
+        "http://127.0.0.1:5173",
+
+        "https://secure-ai-vault-811g0e9g5-rahulchaudhary2005s-projects.vercel.app",
+
+        "https://secure-ai-vault-lndol.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
